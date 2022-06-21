@@ -2,7 +2,6 @@ package gee
 
 import (
 	"sync"
-	"gmr/gee"
 )
 type cache struct {
 	mu sync.Mutex
