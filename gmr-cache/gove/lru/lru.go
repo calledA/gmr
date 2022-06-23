@@ -1,4 +1,4 @@
-package gee
+package lru
 
 import "container/list"
 

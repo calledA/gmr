@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gmr/gmr-web/gee"
+	gove "gmr/gmr-web/gove"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -19,8 +19,8 @@ func FormatAsDate(t time.Time) string {
 }
 
 func main() {
-	r := gee.New()
-	r.Use(gee.Logger())
+	r := gove.New()
+	r.Use(gove.Logger())
 	r.SetFuncMap(template.FuncMap{
 		"FormatAsDate": FormatAsDate,
 	})
@@ -29,19 +29,19 @@ func main() {
 
 	stu1 := &student{Name: "Geektutu", Age: 20}
 	stu2 := &student{Name: "Jack", Age: 22}
-	r.GET("/", func(c *gee.Context) {
+	r.GET("/", func(c *gove.Context) {
 		c.HTML(http.StatusOK, "css.tmpl", nil)
 	})
-	r.GET("/students", func(c *gee.Context) {
-		c.HTML(http.StatusOK, "arr.tmpl", gee.H{
-			"title":  "gee",
+	r.GET("/students", func(c *gove.Context) {
+		c.HTML(http.StatusOK, "arr.tmpl", gove.H{
+			"title":  "gove",
 			"stuArr": [2]*student{stu1, stu2},
 		})
 	})
 
-	r.GET("/date", func(c *gee.Context) {
-		c.HTML(http.StatusOK, "custom_func.tmpl", gee.H{
-			"title": "gee",
+	r.GET("/date", func(c *gove.Context) {
+		c.HTML(http.StatusOK, "custom_func.tmpl", gove.H{
+			"title": "gove",
 			"now":   time.Date(2022, 6, 19, 0, 0, 0, 0, time.UTC),
 		})
 	})
@@ -51,12 +51,12 @@ func main() {
 
 // day-07
 // func main() {
-// 	r := gee.Default()
-// 	r.GET("/", func(c *gee.Context) {
+// 	r := gove.Default()
+// 	r.GET("/", func(c *gove.Context) {
 // 		c.String(http.StatusOK, "Hello Geektutu\n")
 // 	})
 // 	// index out of range for testing Recovery()
-// 	r.GET("/panic", func(c *gee.Context) {
+// 	r.GET("/panic", func(c *gove.Context) {
 // 		names := []string{"geektutu"}
 // 		c.String(http.StatusOK, names[100])
 // 	})
