@@ -4,7 +4,9 @@ import (
 	"gmr/gmr-blog/models"
 	"gmr/gmr-blog/pkg/e"
 	"gmr/gmr-blog/pkg/util"
-	"log"
+	"gmr/gmr-blog/pkg/logging"
+
+	// "log"
 	"net/http"
 
 	"github.com/astaxie/beego/validation"
@@ -43,7 +45,7 @@ func GetAuth(c *gin.Context) {
 		}
 	} else {
 		for _,err := range valid.Errors {
-			log.Println(err.Key,err.Message)
+			logging.Info(err.Key,err.Message)
 		}
 	}
 

@@ -1,13 +1,14 @@
 package v1
 
 import (
-	"log"
+	// "log"
 	"net/http"
 
 	"gmr/gmr-blog/models"
 	"gmr/gmr-blog/pkg/e"
 	"gmr/gmr-blog/pkg/setting"
 	"gmr/gmr-blog/pkg/util"
+	"gmr/gmr-blog/pkg/logging"
 
 	"github.com/unknwon/com"
 	"github.com/astaxie/beego/validation"
@@ -67,7 +68,7 @@ func AddTag(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Println(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 	c.JSON(http.StatusOK, gin.H{
@@ -109,7 +110,7 @@ func EditTag(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Println(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 	c.JSON(http.StatusOK, gin.H{
@@ -134,7 +135,7 @@ func DeleteTag(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Println(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 	c.JSON(http.StatusOK, gin.H{
